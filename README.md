@@ -2,7 +2,9 @@
 Creating a visual language of how neurological conditions change perceptions 
 
 The aim of this project is to create a bridge of understanding of neurological conditions through visual simulations. I will 1) use openly shared neuroimaging datasets investigating perceptual differences in people with underlying mental health conditions, 
+
 2) transform their fMRI data (process minimally, but in a scientifically sound way) to independent components of informative source signals, which of some will be shared across groups (ie "control" vs "with_depression").
+
 3) Transform these shared and unshared components numerically as inputs to morph/recreate the initial object of fMRI study to simulate how these objects/concepts "look differently" for people with different cognitive mechanisms. 
 
 The re-morphed objects, colors, audio will be explorative to show the differences between these populations, but scientifically uninformative for interpreting the object, due to limitations of how much we know of a correspondence between brain "activity" and underlying brain "representation". Yet this is not a concern for us, as it still allows us to translate what is mentally untranslatable; such as an emotional music experience of a person with depression, to something that we can all percieve in same terms: a morphed shape, a tweaked color, a happy birthday song in a different pitch! 
