@@ -1,7 +1,9 @@
 ## fmriBridge
 Creating a visual language of how neurological conditions change perceptions 
 
-The aim of this project is to create a bridge of understanding of neurological conditions through visual simulations. I will 1) use openly shared neuroimaging datasets investigating perceptual differences in people with underlying mental health conditions, 
+The aim of this project is to create a bridge of understanding of neurological conditions through visual simulations.I will
+
+1) use openly shared neuroimaging datasets investigating perceptual differences in people with underlying mental health conditions, 
 
 2) transform their fMRI data (process minimally, but in a scientifically sound way) to independent components of informative source signals, which of some will be shared across groups (ie "control" vs "with_depression").
 
@@ -12,13 +14,15 @@ The re-morphed objects, colors, audio will be explorative to show the difference
 # data source 
 openneuro.org: shared neuroimaging datasets, 
 provisionally these data will come from two studies:
+
 1) "Neural Processing of Emotional Musical and Nonmusical Stimuli in Depression" https://openneuro.org/datasets/ds000171/versions/00001 
 Here, the data of interest is the brain activity associated with hearing a music in depressed individuals vs individuals never diagnosed with depression.
+
 2) "A phenome-wide examination of neural and cognitive function" 
 https://www.nature.com/articles/sdata2016110]
 Here, the data of interest is the brain activity associated with percieving different colors in individuals diagnosed with schizophrenia vs ADHD vs bipolar disorder vs individuals never diagnosed with these conditions
 
-I will use Datalad package to pull these data to my python environment, in which I will use scikit-learn and nipype to analyze my data
+I will use Datalad package to pull these data to my python environment, in which I will use either scikit-learn or the method outlined here: https://github.com/steverab/tensor-gmm/blob/master/python/tensor_gmm.ipynb and nipype to analyze my data, 
 
 # 1) Data analysis pipeline, let's first understand the ML side
 
@@ -29,13 +33,13 @@ Linear algebraically speaking, ICA reduces data to a set of orthonormal vectors,
 
 ICA in single-subject fMRI data can be used to decompose spatial and temporal aspects of signal to create independent components, 
 
-fmri data: spatial * temporal (4D) data for a person ==> (spatial * Independent components) * (temporal * Independent components)
+*fmri data: spatial * temporal (4D) data for a person ==> (spatial * Independent components) * (temporal * Independent components)
 
 which is what neuroscientists need/use to understand brain function, for example by displaying the data through transforming it through the (temporal * ICA) matrix to see "when" an informative activity occurs, or by transforming it through (spatial * ICA) matrix to see "where" an informative activity occurs. 
 
 However, my challenge here is to use this approach for multiple subjects, but still get the same independent vectors that reduce my data in a meaningful way; 
 
-fmri data: spatial * temporal * subject (5D) data  ==>  ?? How do we get the same IC's that can decompose all 3 dimensions?
+*fmri data: spatial * temporal * subject (5D) data  ==>  ?? How do we get the same IC's that can decompose all 3 dimensions?
 
 Concatenating two of the three higher dimensions (ex temporal* subject) then passing it through ICA can make sense for the given neuroscientific data, ex. resting state where the temporal aspect of the brain activity is not very informative between subjects anyways, but not here, so we need a smarter approach:
 
@@ -45,8 +49,12 @@ Pass ICA on concatenating two higher dimensions, ex subject * temporal to create
 The resulting matrices will be my independent vectors that I can use to reduce my data
 
 https://ieeexplore.ieee.org/abstract/document/1263605
+
 https://www.fmrib.ox.ac.uk/datasets/techrep/tr04cb1/tr04cb1.pdf
+
 https://www.fmrib.ox.ac.uk/datasets/techrep/tr04cb1/tr04cb1/node3.html
+
+https://arxiv.org/pdf/1711.10781.pdf
 
 
 # 1) Data analysis pipeline, let's first understand the neuroside
